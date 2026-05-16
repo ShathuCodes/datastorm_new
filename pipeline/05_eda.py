@@ -30,7 +30,7 @@ import matplotlib.patches as mpatches
 from pathlib import Path
 
 warnings.filterwarnings("ignore")
-plt.style.use("dark_background")
+plt.style.use("seaborn-v0_8-whitegrid")
 
 ROOT   = Path(__file__).parent.parent
 SILVER = ROOT / "pipeline" / "silver"
@@ -41,16 +41,16 @@ OUTPUT.mkdir(parents=True, exist_ok=True)
 # ---------------------------------------------------------------------------
 # Shared color palette
 # ---------------------------------------------------------------------------
-C_BLUE    = "#00d4ff"
-C_RED     = "#ff6b6b"
-C_GREEN   = "#00ff88"
-C_GOLD    = "#ffd700"
-C_PURPLE  = "#b388ff"
-C_ORANGE  = "#ff9800"
-C_BG      = "#0d1117"
-C_PANEL   = "#161b22"
-C_BORDER  = "#30363d"
-C_TEXT    = "white"
+C_BLUE    = "#1f77b4"
+C_RED     = "#d62728"
+C_GREEN   = "#2ca02c"
+C_GOLD    = "#ff7f0e"
+C_PURPLE  = "#9467bd"
+C_ORANGE  = "#ff7f0e"
+C_BG      = "white"
+C_PANEL   = "white"
+C_BORDER  = "#cccccc"
+C_TEXT    = "black"
 
 
 def style_axes(ax):

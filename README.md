@@ -9,24 +9,22 @@
 
 ```
 datastorm/
-├── main.py                         ← Orchestrator: run this
-├── config.py                       ← All settings & column name mappings
+├── run_pipeline.py                 ← Orchestrator: run this
 ├── pipeline/
-│   ├── bronze/
-│   │   └── ingest.py               ← Raw ingestion (zero transformation)
-│   ├── silver/
-│   │   ├── dq_checks.py            ← Reusable DQ check functions
-│   │   └── clean.py                ← Dataset-specific cleaning logic
-│   └── gold/
-│       ├── feature_engineering.py  ← Historical + peer group features
-│       ├── poi_scraper.py          ← Overpass API POI enrichment
-│       └── model.py                ← Latent demand estimation model
-└── data/
-    ├── raw/         ← PUT YOUR CSV FILES HERE
-    ├── bronze/      ← Auto-generated: raw snapshots
-    ├── silver/
-    │   └── rejected/ ← Quarantined bad records (with failure reason)
-    └── gold/        ← Enriched feature table + POI cache
+│   ├── 01_bronze_ingest.py         ← Raw ingestion
+│   ├── 02_silver_clean.py          ← Dataset-specific cleaning logic
+│   ├── 03_poi_scraper.py           ← Overpass API POI enrichment
+│   ├── 04_gold_features_model.py   ← Latent demand estimation model
+│   ├── 05_eda.py                   ← EDA dashboard generation
+│   ├── 06_validation.py            ← TimeSeriesSplit validation
+│   ├── 07_comparison_plots.py      ← Comparison analysis plots
+│   ├── dq_checks.py                ← Reusable DQ check library
+│   ├── bronze/                     ← Auto-generated: bronze parquets
+│   ├── silver/                     ← Auto-generated: silver parquets
+│   ├── gold/                       ← Auto-generated: gold features
+│   ├── rejected/                   ← Quarantined bad records
+│   └── poi_cache/                  ← Cached POI query results
+└── input/                          ← PUT YOUR CSV FILES HERE
 ```
 
 ---
@@ -47,28 +45,24 @@ pip install pandas numpy requests
 | `outlet_coordinates.csv` | Latitude/Longitude per outlet |
 | `distributor_seasonality_details.csv` | Monthly seasonality index per distributor |
 | `holiday_list.csv` | Sri Lanka public holidays |
-
-### 3. Configure column names *(if needed)*
-Open `config.py` and update the `COLS` dictionary to match your CSV headers.  
-Also update `TEAM_NAME` before submitting.
-
+ 
 ---
 
 ## Running the Pipeline
 
-### Full pipeline (includes POI scraping — may take time for 20k outlets)
+### Full pipeline (Core steps)
 ```bash
-python main.py
+python run_pipeline.py
 ```
 
-### Skip POI scraping (fast run, no internet needed)
+### Full pipeline with Validation and Comparison Plots
 ```bash
-python main.py --skip-poi
+python run_pipeline.py --validate --compare
 ```
 
-### Full pipeline with EDA summary printed
+### Full pipeline including POI Scraping (may take time)
 ```bash
-python main.py --eda
+python run_pipeline.py --poi
 ```
 
 ### Outputs

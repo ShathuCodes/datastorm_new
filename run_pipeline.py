@@ -130,7 +130,7 @@ Examples:
     print("=" * 60)
     print(f"\n  Total elapsed:  {total_elapsed:.1f}s ({total_elapsed/60:.1f} min)")
     print(f"\n  Outputs:")
-    print(f"    Predictions    -> output/DataStorm_predictions.csv")
+    print(f"    Predictions    -> output/AI_ACES_predictions.csv")
     print(f"    Gold table     -> pipeline/gold/gold_features.parquet")
     print(f"    Rejected       -> pipeline/rejected/*.csv")
     print(f"    DQ manifest    -> pipeline/rejected/dq_manifest.json")

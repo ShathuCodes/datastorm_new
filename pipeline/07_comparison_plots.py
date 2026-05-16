@@ -33,7 +33,7 @@ import matplotlib.patches as mpatches
 from pathlib import Path
 
 warnings.filterwarnings("ignore")
-plt.style.use("dark_background")
+plt.style.use("seaborn-v0_8-whitegrid")
 
 ROOT    = Path(__file__).parent.parent
 GOLD    = ROOT / "pipeline" / "gold"
@@ -44,16 +44,16 @@ OUTPUT.mkdir(parents=True, exist_ok=True)
 # ---------------------------------------------------------------------------
 # Shared style
 # ---------------------------------------------------------------------------
-C_BG     = "#0d1117"
-C_PANEL  = "#161b22"
-C_BORDER = "#30363d"
-C_TEXT   = "white"
-C_HIST   = "#00d4ff"   # historical — blue
-C_PRED   = "#ff6b6b"   # predicted  — red/coral
-C_GOLD   = "#ffd700"
-C_GREEN  = "#00ff88"
-C_PURPLE = "#b388ff"
-C_ORANGE = "#ff9800"
+C_BG     = "white"
+C_PANEL  = "white"
+C_BORDER = "#cccccc"
+C_TEXT   = "black"
+C_HIST   = "#1f77b4"   # historical — blue
+C_PRED   = "#d62728"   # predicted  — red
+C_GOLD   = "#ff7f0e"
+C_GREEN  = "#2ca02c"
+C_PURPLE = "#9467bd"
+C_ORANGE = "#ff7f0e"
 
 
 def style_ax(ax):
