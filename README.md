@@ -24,7 +24,7 @@ datastorm/
 │   ├── gold/                       ← Auto-generated: gold features
 │   ├── rejected/                   ← Quarantined bad records
 │   └── poi_cache/                  ← Cached POI query results
-└── input/                          ← PUT YOUR CSV FILES HERE
+└── input/                          ← PUT CSV FILES HERE
 ```
 
 ---
